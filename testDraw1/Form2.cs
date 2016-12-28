@@ -76,6 +76,7 @@ namespace testDraw1
             label4.Visible = false;
             label5.Visible = false;
             label6.Visible = false;
+            label7.Visible = false;
             label8.Visible = false;
             label9.Visible = false;
             label10.Visible = false;
@@ -398,13 +399,13 @@ namespace testDraw1
             {
                 timer1.Enabled = !timer1.Enabled;
                 button1.Text = "停止";
+                label7.Visible = true;
             }
             else
             {
                 timer1.Enabled = !timer1.Enabled;
                 button1.Text = "结束";
                 button1.Enabled = false;
-
             }            
         }
     }

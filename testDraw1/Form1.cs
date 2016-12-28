@@ -15,13 +15,16 @@ namespace testDraw1
     public partial class Form1 : Form
     {
         #region 变量
-        Dictionary<int, string> nameDic = new Dictionary<int, string>();  //姓名字典
-        List<string> nameList = new List<string>();                       //姓名列表
+        Dictionary<int, string> nameDic = new Dictionary<int, string>();     //姓名字典1
+        List<string> nameList = new List<string>();                          //姓名列表1
+
         private int delete = 0;
         static int third = 0;
         static int second = 0;
         static int first = 0;
         static int special = 0;
+        bool ss = false;
+        bool s = false;
         #endregion
 
         public Form1()
@@ -41,7 +44,7 @@ namespace testDraw1
             person1.Visible = false;
             person2.Visible = false;
             person3.Visible = false;
-            label1.Text = "   ";
+            label1.Visible = false;
 
             //获取抽奖人员txt文件
             StreamReader reader = new StreamReader(Application.StartupPath + @"\list.txt",Encoding.Default);
@@ -62,10 +65,7 @@ namespace testDraw1
             }
             reader.Close();
 
-            //绑定dataSource 
-            List1.DataSource = nameDic.ToArray();
-            List1.Columns[0].Visible = false;
-            List1.Columns[1].HeaderText = "Name";
+
         }
 
         private void button1_Click(object sender, EventArgs e)//抽奖按钮
@@ -77,14 +77,16 @@ namespace testDraw1
             else
             {
                 if (timer1.Enabled == false)
-                {                  
+                {
                     timer1.Enabled = !timer1.Enabled;
                     comboBox1.Enabled = false;
                     button1.Text = "停止";
+                    label1.Visible = true;
                 }
                 else
                 {
                     timer1.Enabled = !timer1.Enabled;
+                    label1.Visible = true;
                     comboBox1.Enabled = true;
                     button1.Text = "开始";
                     getName(comboBox1.SelectedIndex);
@@ -98,111 +100,107 @@ namespace testDraw1
             {
                 case 0:
                     third++;
-                    if (third == 4)       //三等奖3人
+                    if (third >= 4)       //三等奖3人
                     {
                         //comboBox1.SelectedIndex++;
                         MessageBox.Show("三等奖抽奖完成", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         break;
                     }
-                    if (third == 1)
+                    else 
                     {
-                        person1.Text = label1.Text;
-                        label4.Text = person1.Text;
-                    }
-                    else if (third == 2)
-                    {
-                        person2.Text = label1.Text;
-                        label5.Text = person2.Text;
-                    }
-                    else if (third == 3)
-                    {
-                        person3.Text = label1.Text;
-                        label6.Text = person3.Text;
-                        MessageBox.Show("三等奖抽奖完成", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        groupBox2.Visible = true;
-                    }                        
-                    nameDic.Remove(delete);
-                    List1.DataSource = null;
-                    List1.DataSource = nameDic.ToArray();
-                    List1.Columns[0].Visible = false;
-                    List1.Columns[1].HeaderText = "Name";
-                    break; 
+                        nameDic.Remove(delete);
+                        if (third == 1)
+                        {
+                            person1.Text = label1.Text;
+                            label4.Text = person1.Text;
+                        }
+                        else if (third == 2)
+                        {
+                            person2.Text = label1.Text;
+                            label5.Text = person2.Text;
+                        }
+                        else if (third == 3)
+                        {
+                            person3.Text = label1.Text;
+                            label6.Text = person3.Text;
+                            MessageBox.Show("三等奖抽奖完成", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            groupBox2.Visible = true;
+                        }
+                        break; 
+                    }              
                 case 1:
                     second++;
-                    if (second == 3)          //二等奖2人
+                    if (second >= 3)          //二等奖2人
                     {
                         //comboBox1.SelectedIndex++;
                         MessageBox.Show("二等奖抽奖完成", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         break;
                     }
-                    if (second == 1)
+                    else
                     {
-                        person1.Text = label1.Text;
-                        label7.Text = person1.Text;
+                        nameDic.Remove(delete);
+                        if (second == 1)
+                        {
+                            person1.Text = label1.Text;
+                            label7.Text = person1.Text;
+                        }
+                        else if (second == 2)
+                        {
+                            person2.Text = label1.Text;
+                            label8.Text = person2.Text;
+                            MessageBox.Show("二等奖抽奖完成", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            groupBox3.Visible = true;
+                        }
+                        break;
                     }
-                    else if (second == 2)
-                    {
-                        person2.Text = label1.Text;
-                        label8.Text = person2.Text;
-                        MessageBox.Show("二等奖抽奖完成", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        groupBox3.Visible = true;
-                    }         
-                    nameDic.Remove(delete);
-                    List1.DataSource = null;
-                    List1.DataSource = nameDic.ToArray();
-                    List1.Columns[0].Visible = false;
-                    List1.Columns[1].HeaderText = "Name";
-                    break;
                 case 2:
                     first++;
-                    if (first == 2)             //一等奖1人
+                    if (first >= 2)             //一等奖1人
                     {
                         //comboBox1.SelectedIndex++;
                         MessageBox.Show("一等奖抽奖完成", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         break;
                     }
-                    person1.Text = label1.Text;
-                    label9.Text = person1.Text;
-                    nameDic.Remove(delete);
-                    List1.DataSource = null;
-                    List1.DataSource = nameDic.ToArray();
-                    List1.Columns[0].Visible = false;
-                    List1.Columns[1].HeaderText = "Name";
-                    MessageBox.Show("一等奖抽奖完成", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    groupBox4.Visible = true;
-                    break;
+                    else
+                    {
+                        person1.Text = label1.Text;
+                        label9.Text = person1.Text;
+                        nameDic.Remove(delete);
+                        MessageBox.Show("一等奖抽奖完成", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        groupBox4.Visible = true;
+                        break;
+                    }
                 case 3:
                     special++;
-                    if (special == 2)             //特等奖1人
+                    if (special >= 2)             //特等奖1人
                     {
                         //comboBox1.Text = " ";
                         MessageBox.Show("特等奖抽奖完成", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         break;
                     }
-                    person1.Text = label1.Text;
-                    label10.Text = person1.Text;
-                    nameDic.Remove(delete);
-                    List1.DataSource = null;
-                    List1.DataSource = nameDic.ToArray();
-                    List1.Columns[0].Visible = false;
-                    List1.Columns[1].HeaderText = "Name";
-                    MessageBox.Show("特等奖抽奖完成", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    groupBox5.Visible = true;
-                    break;
+                    else
+                    {
+                        person1.Text = label1.Text;
+                        label10.Text = person1.Text;
+                        nameDic.Remove(delete);
+                        MessageBox.Show("特等奖抽奖完成", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        groupBox5.Visible = true;
+                        break;
+                    }                    
             }
                 
         }
 
         private void timer1_Tick(object sender, EventArgs e)//定时器设置 定时输出随机数，作为字典索引获取中奖人姓名
         {
-            if (comboBox1.SelectedIndex == 2 || comboBox1.SelectedIndex == 3)
+            if (comboBox1.SelectedIndex == 2)
                 timer1.Interval = 15;
             int[] arrPerson = new int[nameDic.Count];
             nameDic.Keys.CopyTo(arrPerson, 0);
             int nRdId = new Random().Next(0, arrPerson.Length);
             int nPerson = arrPerson[nRdId];
             label1.Text = nameDic[nPerson];
-            delete = nPerson;
+            delete = nPerson;           
         }
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)//抽奖类别选择框
@@ -255,26 +253,34 @@ namespace testDraw1
 
         private void 进入特别纪念奖ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (third >= 3 && second >= 2 && first >= 1 && special >= 1)
+            if (ss == false)
             {
-                //this.Visible = false;
-                Form2 f2 = new Form2();
+                if (third >= 3 && second >= 2 && first >= 1 && special >= 1)
+                {
+                    //this.Visible = false;
+                    Form2 f2 = new Form2();
 
-                f2.P1 = label4.Text;
-                f2.P2 = label5.Text;
-                f2.P3 = label6.Text;
-                f2.P4 = label7.Text;
-                f2.P5 = label8.Text;
-                f2.P6 = label9.Text;
-                f2.P7 = label10.Text;
-                
-                f2.ShowDialog();
-                f2.TopMost = true;
+                    f2.P1 = label4.Text;
+                    f2.P2 = label5.Text;
+                    f2.P3 = label6.Text;
+                    f2.P4 = label7.Text;
+                    f2.P5 = label8.Text;
+                    f2.P6 = label9.Text;
+                    f2.P7 = label10.Text;
 
+                    ss = true;
+                    f2.ShowDialog();
+                    f2.TopMost = true;
+
+                }
+                else
+                {
+                    MessageBox.Show("没有完成今年抽奖", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             else
             {
-                MessageBox.Show("没有完成今年抽奖", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("抽奖结束", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

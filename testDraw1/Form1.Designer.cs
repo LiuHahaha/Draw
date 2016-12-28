@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.List1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -57,7 +56,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.进入特别纪念奖ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.List1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -69,21 +67,11 @@
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // List1
-            // 
-            this.List1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.List1.Location = new System.Drawing.Point(10, 44);
-            this.List1.Name = "List1";
-            this.List1.RowTemplate.Height = 23;
-            this.List1.Size = new System.Drawing.Size(143, 163);
-            this.List1.TabIndex = 0;
-            this.List1.Visible = false;
-            // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Transparent;
             this.button1.Font = new System.Drawing.Font("微软雅黑", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button1.Location = new System.Drawing.Point(418, 388);
+            this.button1.Location = new System.Drawing.Point(419, 377);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(195, 92);
             this.button1.TabIndex = 1;
@@ -93,11 +81,11 @@
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.SystemColors.Info;
+            this.label1.BackColor = System.Drawing.Color.Wheat;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Font = new System.Drawing.Font("微软雅黑", 42F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.ForeColor = System.Drawing.Color.Blue;
-            this.label1.Location = new System.Drawing.Point(25, 388);
+            this.label1.Location = new System.Drawing.Point(25, 377);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(258, 92);
             this.label1.TabIndex = 2;
@@ -164,7 +152,7 @@
             "二等奖",
             "一等奖",
             "特等奖"});
-            this.comboBox1.Location = new System.Drawing.Point(162, 85);
+            this.comboBox1.Location = new System.Drawing.Point(176, 85);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 46);
             this.comboBox1.TabIndex = 7;
@@ -267,7 +255,6 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.label9);
-            this.groupBox4.Controls.Add(this.List1);
             this.groupBox4.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox4.Location = new System.Drawing.Point(3, 258);
             this.groupBox4.Name = "groupBox4";
@@ -379,7 +366,6 @@
             this.Name = "Form1";
             this.Text = "抽奖系统";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.List1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -401,7 +387,6 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView List1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Timer timer1;
