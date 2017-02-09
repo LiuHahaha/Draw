@@ -193,14 +193,14 @@ namespace testDraw1
 
         private void timer1_Tick(object sender, EventArgs e)//定时器设置 定时输出随机数，作为字典索引获取中奖人姓名
         {
-            if (comboBox1.SelectedIndex == 2)
-                timer1.Interval = 15;
-            int[] arrPerson = new int[nameDic.Count];
-            nameDic.Keys.CopyTo(arrPerson, 0);
-            int nRdId = new Random().Next(0, arrPerson.Length);
-            int nPerson = arrPerson[nRdId];
-            label1.Text = nameDic[nPerson];
-            delete = nPerson;           
+                if (comboBox1.SelectedIndex == 2)
+                    timer1.Interval = 15;
+                int[] arrPerson = new int[nameDic.Count];
+                nameDic.Keys.CopyTo(arrPerson, 0);
+                int nRdId = new Random().Next(0, arrPerson.Length);
+                int nPerson = arrPerson[nRdId];
+                label1.Text = nameDic[nPerson];
+                delete = nPerson; 
         }
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)//抽奖类别选择框
